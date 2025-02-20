@@ -1,15 +1,15 @@
-import React from "react";
-// import unicorn from "../assets/unicorn.png";
-import { bgImg, logo } from "../utils/constants";
+import unicorn from "../assets/unicorn.png";
+import logo from "../assets/logo.png";
+// import { bgImg, logo } from "../utils/constants";
 
 const First = () => {
     return (
         <div className="w-full min-h-svh">
             {/* Background Image - Visible on Large Screens */}
             <div 
-                className="lg:block absolute w-full h-fullrelative object-fill object-center min-h-screen bg-no-repeat" 
-                // style={{ backgroundImage: `url(${unicorn})` }}
-                style={{ backgroundImage: `url(${bgImg})` }}
+                className="lg:block  absolute w-full h-full object-fill object-center min-h-screen bg-no-repeat" 
+                style={{ backgroundImage: `url(${unicorn})` }}
+                // style={{ backgroundImage: `url(${bgImg})` }}
             ></div>
 
             {/* Content Wrapper */}
@@ -17,8 +17,8 @@ const First = () => {
                 {/* Image Section for Small Screens */}
                 <div 
                     className="w-screen h-80 min-h-[50vh]  bg-center bg-contain max-w-full bg-no-repeat lg:hidden" 
-                    // style={{ backgroundImage: `url(${unicorn})` }}
-                    style={{ backgroundImage: `url(${bgImg})` }}
+                    style={{ backgroundImage: `url(${unicorn})` }}
+                    // style={{ backgroundImage: `url(${bgImg})` }}
                 ></div>
 
                 {/* Text Content */}

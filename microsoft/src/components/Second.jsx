@@ -1,4 +1,5 @@
-import { secondImg } from "../utils/constants";
+// import { secondImg } from "../utils/constants";
+import secondImg from "../assets/secondImg.png"
 
 const Second = () => {
   return (
