@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <First/>
-      <div className='bg-violet-100 bg-gradient-to-t h-full'>
+      <div className='bg-violet-100 bg-gradient-to-t '>
         <Second/>
         <Third/>
       </div>

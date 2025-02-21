@@ -27,18 +27,18 @@ const Third = () => {
   }
   return (
     <div className="m-4">
-      <h2 className="font-bold text-center text-2xl">
+      <h2 className="font-bold text-center text-3xl">
         Highway to 100 Unicorns: AI Edition Virtual Conference
       </h2>
 
       {/* Season Tabs */}
-      <div className="flex justify-center m-3 px-3 gap-8 text-xs text-gray-500 ">
+      <div className="flex justify-center m-3 px-3 gap-7 text-xs text-gray-500 ">
         {seasons.map((season) => (
           <div
             key={season}
             className={`cursor-pointer active:border active:border-dotted${
               selected === season
-                ? "border-black rounder border-b-[#0067B8] border-b-2  bg-gray-200"
+                ? "border-black  border-b-[#0067B8] border-b-2  bg-gray-200"
                 : "border-transparent text-gray-500 hover:bg-gray-200 hover:border-gray-400"
             }`}
             onClick={() => setSelected(season)}
