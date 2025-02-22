@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Card1 from "./season1/Card1";
 
 const Season3 = () => {
@@ -10,10 +10,67 @@ const Season3 = () => {
     "05/09", "06/09", "07/09", "08/09",
     "12/09", "15/09"
   ];
+
+  const scrollRef = useRef(null);
+    const [showLeftArrow, setShowLeftArrow] = useState(false);
+    const [showRightArrow, setShowRightArrow] = useState(true);
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+  
+    useEffect(() => {
+      const handleResize = () => {
+        setIsSmallScreen(window.innerWidth < 768);
+      };
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+  
+    const checkScroll = () => {
+      if (scrollRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+        setShowLeftArrow(scrollLeft > 0);
+        setShowRightArrow(scrollLeft + clientWidth < scrollWidth);
+      }
+    };
+  
+    useEffect(() => {
+      if (scrollRef.current) {
+        scrollRef.current.addEventListener("scroll", checkScroll);
+      }
+      return () => {
+        if (scrollRef.current) {
+          scrollRef.current.removeEventListener("scroll", checkScroll);
+        }
+      };
+    }, []);
+  
+    const scrollLeft = () => {
+      if (scrollRef.current) {
+        scrollRef.current.scrollBy({ left: -200, behavior: "smooth" });
+      }
+    };
+  
+    const scrollRight = () => {
+      if (scrollRef.current) {
+        scrollRef.current.scrollBy({ left: 200, behavior: "smooth" });
+      }
+    };
   
   return (
     <div>
-      <div className="flex justify-center flex-wrap gap-1 mt-7">
+    <div className="relative flex items-center justify-center mt-7">
+      {isSmallScreen && showLeftArrow && (
+        <button
+          className="absolute left-0 top-0 h-full z-10 shadow-md py-4 px-2 cursor-pointer"
+          style={{
+            background: "linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0))",
+          }}
+          onClick={scrollLeft}
+        >
+          &lt;
+        </button>
+      )}
+
+      <div ref={scrollRef} className="flex overflow-x-auto scroll-smooth snap-x whitespace-nowrap no-scrollbar mb-8">
         {dates.map((date, index) => (
           <div
             key={index}
@@ -23,7 +80,7 @@ const Season3 = () => {
                   ? "bg-gray-200 border-black border-b-2 border-b-[#0067B8]"
                   : "border-transparent hover:bg-gray-200 hover:border-gray-400"
               }`}
-            onClick={() => setActiveIndex(index)} // Set active on click
+            onClick={() => setActiveIndex(index)}
           >
             <div className={`flex justify-center flex-col items-center ${activeIndex === index ? "border-2 border-black border-dotted rounded p-1" : "px-2 border-transparent"}`}>
               <p className="text-gray-500">
@@ -40,8 +97,22 @@ const Season3 = () => {
           </div>
         ))}
       </div>
-      <Card1 activeIndex={activeIndex} />
+
+      {isSmallScreen && showRightArrow && (
+        <button
+          className="absolute right-0 top-0 h-full z-10 shadow-md py-4 px-2 cursor-pointer"
+          style={{
+            background: "linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0))",
+          }}
+          onClick={scrollRight}
+        >
+          &gt;
+        </button>
+      )}
     </div>
+
+    <Card1 activeIndex={activeIndex} />
+  </div>
   );
 };
 

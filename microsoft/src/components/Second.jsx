@@ -20,11 +20,11 @@ const Second = () => {
         </div>
 
         {/* Image Section */}
-        <div className="flex justify-center lg:justify-end w-full">
+        <div className="flex justify-center lg:justify-end w-full p-0">
           <img
             src={secondImg}
             alt="second"
-            className="rounded-4xl w-full max-w-md lg:max-w-none h-auto p-2 md:p-4"
+            className="rounded-4xl w-full p-1 max-w-md lg:max-w-none h-auto "
           />
         </div>
       </div>
