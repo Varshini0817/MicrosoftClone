@@ -10,11 +10,11 @@ const Season5 = () => {
   const scrollRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
-  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 610);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 768);
+      setIsSmallScreen(window.innerWidth < 610);
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -75,7 +75,7 @@ const Season5 = () => {
                   ? "bg-gray-200 border-black border-b-2 border-b-[#0067B8]"
                   : "border-transparent hover:bg-gray-200 hover:border-gray-400"
               }`}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => {setActiveIndex(index); window.location.hash = `s5-${index + 1}`;}}
           >
               <div
               className={`flex justify-center flex-col items-center ${

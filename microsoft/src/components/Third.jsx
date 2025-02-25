@@ -6,20 +6,25 @@ import Season4 from "./seasons/Season4";
 import Season5 from "./seasons/Season5";
 
 const Third = () => {
-  const [selected, setSelected] = useState("Season 1");
+  const [selected, setSelected] = useState("");
   const scrollRef = useRef(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
-  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 620);
 
   const seasons = ["Season 1", "Season 2", "Season 3", "Season 4", "Season 5"];
+  
+
+  const handleClick = (season) => {
+    setSelected(season);
+    window.location.hash = season.replace(" ", "");
+  };
 
   // Detect screen resize
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < 768);
+      setIsSmallScreen(window.innerWidth < 620);
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -75,7 +80,7 @@ const Third = () => {
 
   return (
     <div className="m-4">
-      <h2 className="font-bold text-center text-3xl">
+      <h2 className="font-bold text-center text-xl lg:text-3xl">
         Highway to 100 Unicorns: AI Edition Virtual Conference
       </h2>
 
@@ -107,7 +112,7 @@ const Third = () => {
                   ? "border-black border-b-[#0067B8] border-b-2 bg-gray-200"
                   : "border-transparent text-gray-500 hover:bg-gray-200 hover:border-gray-400"
               }`}
-              onClick={() => setSelected(season)}
+              onClick={() => handleClick(season) }
             >
               <div
                 className={`${
@@ -116,7 +121,7 @@ const Third = () => {
                     : "px-5 py-3 border-transparent"
                 }`}
               >
-                <p>{season}</p>
+                <p className="text-[13px]">{season}</p>
               </div>
             </div>
           ))}

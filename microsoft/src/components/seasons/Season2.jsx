@@ -84,7 +84,7 @@ const Season2 = () => {
                   ? "bg-gray-200 border-black border-b-2 border-b-[#0067B8]"
                   : "border-transparent hover:bg-gray-200 hover:border-gray-400"
               }`}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => {setActiveIndex(index); window.location.hash = `s2-${index + 1}`;}}
           >
             <div className={`flex justify-center flex-col items-center ${activeIndex === index ? "border-2 border-black border-dotted rounded p-1" : "px-2 border-transparent"}`}>
               <p className="text-gray-500">{days[index % days.length]}</p>

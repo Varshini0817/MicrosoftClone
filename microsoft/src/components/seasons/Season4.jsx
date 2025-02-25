@@ -75,7 +75,7 @@ const Season4 = () => {
                   ? "bg-gray-200 border-black border-b-2 border-b-[#0067B8]"
                   : "border-transparent hover:bg-gray-200 hover:border-gray-400"
               }`}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => {setActiveIndex(index); window.location.hash = `s4-${index + 1}`;}}
           >
               <div
               className={`flex justify-center flex-col items-center ${

@@ -5,9 +5,9 @@ import Third from './components/Third'
 
 function App() {
   return (
-    <div>
+    <div className='flex flex-col'>
       <First/>
-      <div className='bg-violet-100 h-full'>
+      <div className="bg-gradient-to-b from-purple-200 to-white m-0">
         <Second/>
         <Third/>
       </div>
